@@ -31,6 +31,12 @@
   version = "v1.0.0"
 
 [[projects]]
+  name = "github.com/inconshreveable/mousetrap"
+  packages = ["."]
+  revision = "76626ae9c91c4f2a10f34cad8ce83ea42c93bb75"
+  version = "v1.0"
+
+[[projects]]
   name = "github.com/kat-co/vala"
   packages = ["."]
   revision = "bfe9b50e828ad56312e486cbf4165ff1ac3a9bae"
@@ -85,6 +91,12 @@
   version = "v1.2.0"
 
 [[projects]]
+  name = "github.com/spf13/cobra"
+  packages = ["."]
+  revision = "ef82de70bb3f60c65fb8eebacbb2d122ef517385"
+  version = "v0.0.3"
+
+[[projects]]
   name = "github.com/spf13/jwalterweatherman"
   packages = ["."]
   revision = "4a4406e478ca629068e7768fc33f3f044173c0a6"
@@ -120,14 +132,17 @@
 [[projects]]
   name = "github.com/volatiletech/sqlboiler"
   packages = [
+    ".",
     "boil",
+    "boilingcore",
     "drivers",
     "drivers/sqlboiler-psql/driver",
     "importers",
     "queries",
     "queries/qm",
     "randomize",
-    "strmangle"
+    "strmangle",
+    "templatebin"
   ]
   revision = "1340e5544bc5880f10808da79ebb3ee80cf8abb1"
   version = "v3.0.1"
@@ -160,6 +175,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "b9595992e1f6dc5e27688a26cfa31afbe47fef126b3d0131c9ae2337b0c0a903"
+  inputs-digest = "5692e4214ca12c263737db8c9bfe7706ad5619ec5a020b20dca23cd397585b87"
   solver-name = "gps-cdcl"
   solver-version = 1

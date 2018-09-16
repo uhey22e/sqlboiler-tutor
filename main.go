@@ -1,6 +1,6 @@
 package main
 
-//go:generate sqlboiler --wipe --struct-tag-casing camel psql
+//go:generate sqlboiler --wipe --templates ${GOPATH}/src/github.com/volatiletech/sqlboiler/templates,${GOPATH}/src/github.com/volatiletech/sqlboiler/templates_test,${GOPATH}/src/github.com/uhey22e/sqlboiler-tutor/boil_templates --struct-tag-casing camel psql
 
 import (
 	"database/sql"

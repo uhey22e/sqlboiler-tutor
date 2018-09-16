@@ -14,6 +14,7 @@ import (
 	"time"
 
 	"github.com/pkg/errors"
+	mytypes "github.com/uhey22e/sqlboiler-tutor/types"
 	"github.com/volatiletech/null"
 	"github.com/volatiletech/sqlboiler/boil"
 	"github.com/volatiletech/sqlboiler/queries"
@@ -21,15 +22,25 @@ import (
 	"github.com/volatiletech/sqlboiler/strmangle"
 )
 
+// Insert inserts multiple records
+func (o TodoSlice) Insert(ctx context.Context, exec boil.ContextExecutor, columns boil.Columns) error {
+	for _, v := range o {
+		if err := v.Insert(ctx, exec, columns); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
 // Todo is an object representing the database table.
 type Todo struct {
-	ID       int64       `boil:"id" json:"id" toml:"id" yaml:"id"`
-	Title    string      `boil:"title" json:"title" toml:"title" yaml:"title"`
-	Note     null.String `boil:"note" json:"note,omitempty" toml:"note" yaml:"note,omitempty"`
-	Finished bool        `boil:"finished" json:"finished" toml:"finished" yaml:"finished"`
-	DueDate  null.Time   `boil:"due_date" json:"dueDate,omitempty" toml:"dueDate" yaml:"dueDate,omitempty"`
-	R        *todoR      `boil:"-" json:"-" toml:"-" yaml:"-"`
-	L        todoL       `boil:"-" json:"-" toml:"-" yaml:"-"`
+	ID       int64            `boil:"id" json:"id" toml:"id" yaml:"id"`
+	Title    string           `boil:"title" json:"title" toml:"title" yaml:"title"`
+	Note     null.String      `boil:"note" json:"note,omitempty" toml:"note" yaml:"note,omitempty"`
+	Finished bool             `boil:"finished" json:"finished" toml:"finished" yaml:"finished"`
+	DueDate  mytypes.NullTime `boil:"due_date" json:"dueDate,omitempty" toml:"dueDate" yaml:"dueDate,omitempty"`
+	R        *todoR           `boil:"-" json:"-" toml:"-" yaml:"-"`
+	L        todoL            `boil:"-" json:"-" toml:"-" yaml:"-"`
 }
 
 var TodoColumns = struct {

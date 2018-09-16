@@ -7,3 +7,14 @@
   sslmode= "disable"
   blacklist = []
 
+[[types]]
+  [types.match]
+    type = "null.Time"
+    nullable = true
+
+  [types.replace]
+    type = "mytypes.NullTime"
+
+  [types.imports]
+    third_party = ['mytypes "github.com/uhey22e/sqlboiler-tutor/types"']
+

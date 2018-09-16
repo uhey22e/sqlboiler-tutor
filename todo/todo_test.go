@@ -1,7 +1,9 @@
 package todo
 
 import (
+	"bytes"
 	"database/sql"
+	"encoding/json"
 	"fmt"
 	"os"
 	"testing"
@@ -9,6 +11,7 @@ import (
 
 	_ "github.com/lib/pq"
 	"github.com/uhey22e/sqlboiler-tutor/models"
+	"github.com/uhey22e/sqlboiler-tutor/types"
 	"github.com/volatiletech/null"
 )
 
@@ -43,14 +46,19 @@ func TestStore(t *testing.T) {
 	todos := []*models.Todo{
 		&models.Todo{
 			Title:    "Sample ToDo 1",
-			DueDate:  null.TimeFrom(now.Add(3 * time.Hour)),
+			DueDate:  types.NullTimeFrom(now.Add(3 * time.Hour)),
 			Note:     null.StringFrom("note1..."),
 			Finished: false,
 		},
 		&models.Todo{
 			Title:    "Sample ToDo 2",
-			DueDate:  null.TimeFrom(now.Add(6 * time.Hour)),
+			DueDate:  types.NullTimeFrom(now.Add(6 * time.Hour)),
 			Note:     null.StringFrom("note2..."),
+			Finished: false,
+		},
+		&models.Todo{
+			Title:    "Sample ToDo 3",
+			Note:     null.StringFrom("note3..."),
 			Finished: false,
 		},
 	}
@@ -71,12 +79,16 @@ func TestFetchUnfinished(t *testing.T) {
 		t.Fatal(err)
 	}
 	for _, v := range todos {
-		t.Log(fmt.Sprintf("%+v", v))
+		var buf bytes.Buffer
+		if err := json.NewEncoder(&buf).Encode(v); err != nil {
+			t.Fatal(err)
+		}
+		t.Log(buf.String())
 	}
 }
 
 func TestFinish(t *testing.T) {
-	if err := testApp.Finish([]int64{12, 13}); err != nil {
+	if err := testApp.Finish([]int64{1, 2}); err != nil {
 		t.Fatal(err)
 	}
 }

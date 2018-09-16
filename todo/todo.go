@@ -14,14 +14,9 @@ type App struct {
 }
 
 // Store stores a one or more todos into DB
-func (a *App) Store(todos []*models.Todo) error {
+func (a *App) Store(todos models.TodoSlice) error {
 	// insert for each todo
-	for _, todo := range todos {
-		if err := todo.Insert(context.Background(), a.db, boil.Infer()); err != nil {
-			return err
-		}
-	}
-	return nil
+	return todos.Insert(context.Background(), a.db, boil.Infer())
 }
 
 // FetchUnfinished fetches unfinished ToDos
