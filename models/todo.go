@@ -27,10 +27,9 @@ type Todo struct {
 	Title    string      `boil:"title" json:"title" toml:"title" yaml:"title"`
 	Note     null.String `boil:"note" json:"note,omitempty" toml:"note" yaml:"note,omitempty"`
 	Finished bool        `boil:"finished" json:"finished" toml:"finished" yaml:"finished"`
-	DueDate  null.Time   `boil:"due_date" json:"due_date,omitempty" toml:"due_date" yaml:"due_date,omitempty"`
-
-	R *todoR `boil:"-" json:"-" toml:"-" yaml:"-"`
-	L todoL  `boil:"-" json:"-" toml:"-" yaml:"-"`
+	DueDate  null.Time   `boil:"due_date" json:"dueDate,omitempty" toml:"dueDate" yaml:"dueDate,omitempty"`
+	R        *todoR      `boil:"-" json:"-" toml:"-" yaml:"-"`
+	L        todoL       `boil:"-" json:"-" toml:"-" yaml:"-"`
 }
 
 var TodoColumns = struct {
